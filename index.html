@@ -6,157 +6,191 @@
 <title>سجا | أذكاري</title>
 <style>
 *{box-sizing:border-box;font-family:system-ui}
-body{margin:0;background:#050816;color:#fff;min-height:100vh}
-.app{max-width:480px;margin:0 auto;min-height:100vh;background:#0f1530;padding-bottom:140px;position:relative;overflow:hidden}
-@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
-@keyframes pulse{0%{box-shadow:0 0 0 0 #e8c77a66}100%{box-shadow:0 0 0 20px #e8c77a00}}
-@keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
-.fade{animation:fade .4s ease}
-.top{display:flex;justify-content:space-between;align-items:center;background:#1a2145;margin:14px;border-radius:18px;padding:14px 16px}
-.top button{background:#232b55;border:0;color:#fff;font-size:18px;padding:8px 10px;border-radius:12px;cursor:pointer}
-.sec{padding:0 16px}
-.sec h3{color:#e8c77a;margin:22px 0 6px;font-size:22px}
-.sec span{color:#9aa3c7;font-size:14px}
-.live{background:linear-gradient(90deg,#e8c77a,#ffdf9a);color:#000;text-align:center;padding:10px;border-radius:12px;font-weight:800;margin:12px 16px;animation:pulse 2s infinite}
-.dua{background:#1a2145;border-radius:18px;padding:16px;display:flex;gap:12px;align-items:center;margin-top:12px;cursor:pointer}
-.dua b{font-size:19px}
-.dua p{margin:6px 0 0;color:#cbd2f0;font-size:14px;line-height:1.6}
-.star{font-size:26px;margin-right:auto;background:none;border:0;cursor:pointer}
-.head-row{display:flex;justify-content:space-between;align-items:center}
-.head-row button{color:#e8c77a;background:none;border:0;font-size:14px;cursor:pointer}
-.pray{display:flex;gap:10px;overflow-x:auto;padding:8px 2px;scroll-snap-type:x mandatory}
-.pray div{min-width:105px;background:#1a2145;border-radius:16px;padding:14px 8px;text-align:center;border:1px solid #2a3468;cursor:pointer;scroll-snap-align:start;transition:.2s}
-.pray div:active{transform:scale(.95)}
-.pray div.active{border:2px solid #e8c77a;background:#232b55}
-.pray .t{font-weight:800;font-size:17px;margin:6px 0 2px}
-.cats{display:flex;gap:10px;overflow-x:auto;padding:6px 2px}
-.cats button{min-width:115px;background:#1a2145;border:1px solid #2a3468;color:#fff;border-radius:16px;padding:16px 8px;cursor:pointer}
-.cats button.active{border-color:#e8c77a;background:#232b55}
-.cats b{display:block;margin:8px 0 4px}
-.cats span{color:#9aa3c7;font-size:13px}
-.card{background:#1a2145;border-radius:22px;padding:18px;margin:16px;text-align:center}
-.circle{width:200px;height:200px;border:2px solid #e8c77a;border-radius:50%;margin:18px auto;display:flex;flex-direction:column;justify-content:center;cursor:pointer;animation:float 3s infinite;background:radial-gradient(circle,#232b55,#1a2145)}
-.circle b{font-size:68px;color:#e8c77a;line-height:1}
-.controls{display:flex;gap:10px;justify-content:center}
-.controls button{background:#232b55;border:1px solid #2a3468;color:#fff;padding:12px 18px;border-radius:12px;font-size:20px;cursor:pointer}
-.controls button.gold{background:#e8c77a;color:#000;font-weight:900}
-.azkar{background:#fff;color:#222;border-radius:22px;margin:16px;padding:18px;text-align:center}
-.azkar h2{margin:0;font-size:22px}
-.azkar p{font-size:20px;line-height:1.9}
-.azkar .count{font-size:50px;font-weight:900;color:#8a5a3b}
-.azkar .btn{width:100%;padding:15px;border:0;border-radius:14px;background:#0f1530;color:#e8c77a;font-size:19px;font-weight:800;cursor:pointer}
-.azkar .fav{width:100%;padding:12px;border:1px solid #e8c77a;border-radius:14px;background:#fff;color:#8a5a3b;font-weight:700;cursor:pointer;margin-top:10px}
-.progress{height:8px;background:#eee;border-radius:99px;overflow:hidden;margin:12px 0}
-.progress div{height:100%;background:#e8c77a;width:0%;transition:.3s}
+body{margin:0;background:#050816;color:#fff}
+.app{max-width:480px;margin:0 auto;min-height:100vh;background:#1e2436;padding-bottom:110px;position:relative}
+.topbar{display:flex;justify-content:space-between;padding:12px 16px;align-items:center;background:#1e2436}
+.topbar button{background:#2a3048;border:0;color:#fff;width:38px;height:38px;border-radius:50%;cursor:pointer;font-size:18px}
+.duaTop{text-align:center;padding:6px 20px 14px;font-size:18px;line-height:1.8;color:#e8e8f0}
+.duaTop b{color:#fff}
+.prayTop{display:flex;justify-content:space-between;background:#151a2c;padding:10px 14px;font-size:14px;border-top:1px solid #2a3048;border-bottom:1px solid #2a3048}
+.prayTop b{color:#ffb84d}
+.countdown{text-align:center;padding:8px;color:#ff6b6b;font-size:13px;background:#151a2c}
 .page{display:none}
-.page.active{display:block;animation:fade .3s ease}
-.set-row{background:#1a2145;border-radius:16px;padding:16px;margin:10px 16px;display:flex;justify-content:space-between;align-items:center}
-.set-row button{background:#e8c77a;border:0;padding:8px 14px;border-radius:99px;font-weight:800;cursor:pointer}
-.set-row select{background:#232b55;color:#fff;border:1px solid #2a3468;padding:8px;border-radius:10px}
-.bottom{position:fixed;bottom:12px;left:50%;transform:translateX(-50%);width:calc(100% - 24px);max-width:456px;background:#2a335f;border-radius:22px;display:flex;padding:8px;z-index:20;box-shadow:0 10px 30px #0008}
-.bottom button{flex:1;background:transparent;border:0;color:#cbd2f0;padding:10px 2px;cursor:pointer;font-size:13px}
-.bottom button.active{color:#e8c77a;background:#1a2145;border-radius:16px}
-.bottom .ic{font-size:22px;display:block}
-.toast{position:fixed;top:16px;left:50%;transform:translateX(-50%);background:#e8c77a;color:#000;padding:12px 18px;border-radius:99px;font-weight:800;display:none;z-index:99;max-width:90%;text-align:center}
-.pray-full div{background:#232b55;padding:14px;border-radius:14px;margin:8px 0;display:flex;justify-content:space-between}
+.page.active{display:block;animation:fade .25s}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.card{background:#2a3048;border-radius:14px;margin:10px 14px;padding:14px;display:flex;justify-content:space-between;align-items:center;cursor:pointer}
+.card small{color:#9aa3c7}
+.card .arr{color:#9aa3c7}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:10px 14px}
+.grid button{background:#2a3048;border:0;color:#fff;border-radius:14px;padding:16px 10px;cursor:pointer;font-size:16px;font-weight:700;text-align:center}
+.grid button small{display:block;color:#9aa3c7;font-weight:400;margin-top:4px;font-size:12px}
+.grid button:active{transform:scale(.96);background:#343b5a}
+.grid .red{color:#ff7a7a}.grid .blue{color:#7ab8ff}.grid .gold{color:#ffcc66}.grid .green{color:#7dff9a}.grid .purple{color:#d09aff}.grid .orange{color:#ffb84d}
+.azkarView{background:#fff;color:#222;margin:12px;border-radius:16px;padding:18px;text-align:center}
+.azkarView h2{margin:0;font-size:22px}
+.azkarView p{font-size:21px;line-height:2}
+.azkarView .cnt{font-size:52px;font-weight:900;color:#8a5a3b}
+.azkarView button{width:100%;padding:15px;border:0;border-radius:14px;background:#1e2436;color:#ffcc66;font-size:19px;font-weight:800;cursor:pointer;margin-top:8px}
+.progress{height:8px;background:#eee;border-radius:99px;overflow:hidden}
+.progress div{height:100%;background:#ffcc66;width:0%;transition:.3s}
+.bottom{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:480px;background:#151a2c;display:flex;padding:8px 4px 18px;z-index:20;border-top:1px solid #2a3048}
+.bottom button{flex:1;background:transparent;border:0;color:#9aa3c7;cursor:pointer;font-size:12px;padding:6px 2px}
+.bottom button.active{color:#ffcc66}
+.bottom span{display:block;font-size:22px}
+.compass{width:260px;height:260px;border:6px solid #2a3048;border-radius:50%;margin:20px auto;position:relative;background:radial-gradient(circle,#2a3048,#151a2c);display:flex;align-items:center;justify-content:center}
+.compass .arrow{font-size:80px;transform:rotate(45deg)}
+.surah{background:#2a3048;border-radius:12px;padding:14px;margin:8px 14px;display:flex;justify-content:space-between;cursor:pointer}
+.surah b{font-size:18px}
+.surah span{color:#9aa3c7;font-size:13px}
+.tasBig{text-align:center;padding:30px 16px}
+.tasBig .circle{width:230px;height:230px;border:3px solid #ffcc66;border-radius:50%;margin:20px auto;display:flex;flex-direction:column;justify-content:center;cursor:pointer;background:#2a3048}
+.tasBig .circle b{font-size:70px;color:#ffcc66}
+.set-row{background:#2a3048;border-radius:14px;padding:16px;margin:10px 14px;display:flex;justify-content:space-between;align-items:center}
+.set-row button{background:#ffcc66;border:0;padding:8px 14px;border-radius:99px;font-weight:800;cursor:pointer}
+.toast{position:fixed;top:14px;left:50%;transform:translateX(-50%);background:#ffcc66;color:#000;padding:11px 18px;border-radius:99px;font-weight:800;display:none;z-index:99;max-width:90%;text-align:center}
+.track{display:flex;gap:8px;overflow:auto;padding:8px 14px}
+.track div{min-width:90px;background:#2a3048;border-radius:12px;padding:12px;text-align:center}
+.track div.done{background:#1e4d2e;border:1px solid #7dff9a}
 </style>
 </head>
 <body>
 <div class="app">
 <div id="toast" class="toast"></div>
+<div class="topbar"><div style="display:flex;gap:8px"><button onclick="go('settings')">⚙️</button><button onclick="showToast('بحث - اكتبي اسم الذكر')">🔍</button><button onclick="go('saved')">🔖</button></div><div style="color:#9aa3c7;font-size:13px">سجا 🌿</div></div>
+<div class="duaTop" id="duaTop">رَبَّنَا لَا تُؤَاخِذْنَا إِن نَّسِينَا أَوْ أَخْطَأْنَا<br><span style="font-size:14px;color:#9aa3c7">اضغطي هنا لدعاء جديد 🔄</span></div>
 
+<div class="prayTop"><span>العشاء <b>6:37</b></span><span>🕋 جمعية الفجر</span><span>الفجر <b>4:49</b></span></div>
+<div class="countdown" id="countdown">مضى على أذان العشاء 53 دقيقة</div>
+
+<!-- المنوعة -->
 <div id="page-home" class="page active">
-<div class="top"><div><b>الصفحة الرئيسية</b></div><div><button onclick="showToast('عندك ذكر بعد صلاة العصر 🔔')">🔔</button><button onclick="go('settings')">👤</button><button onclick="go('settings')">☰</button></div></div>
-<div class="live" id="liveClock">🕐 جاري حساب الوقت...</div>
-<div class="sec"><h3>دعاء اليوم</h3><span id="todayDate"></span>
-<div class="dua" onclick="showToast('اللهم آمين 🤲')"><div style="font-size:36px">📖</div><div><b id="duaTitle">اللهم اجعلنا من الشاكرين</b><p id="duaText">اللهم ارزقنا قلبًا خاشعًا ولسانًا ذاكرًا وعملًا متقبلًا</p></div><button class="star" onclick="event.stopPropagation();toggleFav(document.getElementById('duaTitle').innerText,this)">☆</button></div>
-<button onclick="newDua()" style="width:100%;margin-top:10px;padding:12px;border:1px solid #e8c77a;background:transparent;color:#e8c77a;border-radius:12px;cursor:pointer;font-weight:700">دعاء جديد 🔄 اضغطي هنا</button>
+<div class="card" onclick="go('mushaf')"><div><b>المصحف 📖</b><br><small>1 - آخر صفحة: الكهف - 300</small></div><span class="arr">‹</span></div>
+<div class="card" onclick="go('track')"><div><b>متابعة العبادات ✅ <span style="background:#ffcc66;color:#000;font-size:11px;padding:2px 6px;border-radius:99px">جديد</span></b><br><small>تتبع صلواتك وأذكارك ونوافلك</small></div><span class="arr">‹</span></div>
+<div class="grid">
+<button onclick="openAzkar('my','أذكاري')"><span class="gold">أذكاري</span><small>أذكارك الخاصة</small></button>
+<button onclick="openAzkar('names','أسماء الله الحسنى')"><span class="red">أسماء الله الحسنى</span><small>99 اسم</small></button>
+<button onclick="openAzkar('morning','أذكار الصباح')"><span class="blue">أذكار الصباح</span><small>اضغطي وابدئي</small></button>
+<button onclick="openAzkar('evening','أذكار المساء')"><span class="red">أذكار المساء</span><small>اضغطي وابدئي</small></button>
+<button onclick="openAzkar('prayer','أذكار الصلاة')"><span class="blue">أذكار الصلاة</span><small>بعد الصلاة</small></button>
+<button onclick="openAzkar('after','أذكار بعد الصلاة')"><span class="purple">أذكار بعد الصلاة</span><small>33 مرة</small></button>
+<button onclick="openAzkar('sleep','أذكار النوم')"><span class="blue">أذكار النوم</span><small>قبل النوم</small></button>
+<button onclick="openAzkar('wake','أذكار الاستيقاظ')"><span class="orange">أذكار الاستيقاظ</span><small>عند الاستيقاظ</small></button>
+<button onclick="openAzkar('quranDua','أدعية من القرآن')"><span>أدعية من القرآن</span><small>من القرآن</small></button>
+<button onclick="openAzkar('prophet','من دعاء الرسول ﷺ')"><span class="gold">من دعاء الرسول ﷺ</span><small>أدعية نبوية</small></button>
+<button onclick="openAzkar('ruqyah','الرقية بالقرآن')"><span class="orange">الرقية بالقرآن</span><small>رقية شرعية</small></button>
+<button onclick="openAzkar('ruqyahS','الرقية بالسنة')"><span>الرقية بالسنة</span><small>من السنة</small></button>
+<button onclick="openAzkar('tasbih','تسابيح')"><span class="blue">تسابيح</span><small>سبحان الله</small></button>
+<button onclick="openAzkar('hamd','الحمد والثناء')"><span class="orange">الحمد والثناء</span><small>الحمد لله</small></button>
+<button onclick="openAzkar('istighfar','الاستغفار')"><span>الاستغفار</span><small>أستغفر الله</small></button>
+<button onclick="go('more')"><span class="green">المزيد +</span><small>كل الأقسام</small></button>
+</div>
+<div class="azkarView" id="azkarBox" style="display:none"><div class="progress"><div id="prog"></div></div><h2 id="title"></h2><p id="text"></p><div class="cnt" id="count"></div><button onclick="next()">التالي 🤍</button><button onclick="saveCurrent()" style="background:#fff;color:#8a5a3b;border:1px solid #ffcc66">⭐ حفظ في المفضلة</button><p id="pos" style="color:#999;font-size:13px"></p><button onclick="closeAzkar()" style="background:#eee;color:#333">إغلاق ✕</button></div>
 </div>
 
-<div class="sec"><div class="head-row"><h3>مواقيت الصلاة - الرياض</h3><button onclick="go('prayer')">عرض الكل ›</button></div>
-<div class="pray" id="prayList"></div>
-<p style="color:#e8c77a;text-align:center" id="nextPray"></p>
+<!-- الصلاة -->
+<div id="page-prayer" class="page">
+<div style="padding:14px;text-align:center"><b style="font-size:20px">الرياض</b><br><small style="color:#9aa3c7">السبت - مواقيت الصلاة ليوم الأحد</small></div>
+<div style="background:#151a2c;margin:12px;border-radius:14px;padding:16px;text-align:center"><div style="color:#ffcc66;font-size:14px">الصلاة القادمة</div><div style="font-size:28px;font-weight:900">الفجر</div><div id="prayTimer" style="font-size:32px;color:#ffcc66;font-weight:900">9:19:02</div><div id="prayNext" style="color:#9aa3c7"></div></div>
+<div id="prayFull" style="padding:0 6px"></div>
+<button onclick="showToast('تم تفعيل تنبيه قبل كل صلاة')" style="width:calc(100% - 28px);margin:12px 14px;padding:14px;border:0;border-radius:12px;background:#ffcc66;font-weight:800;cursor:pointer">تفعيل التنبيهات 🔔</button>
 </div>
 
-<div class="sec"><div class="head-row"><h3>التصنيفات</h3><button onclick="showToast('عندك 4 تصنيفات، اضغطي أي واحد وبيفتح لك الأذكار')">عرض الكل ›</button></div>
-<div class="cats">
-<button onclick="show('morning',this)"><div style="font-size:28px">🌅</div><b>أدعية الصباح</b><span>7 أذكار - اضغطي</span></button>
-<button onclick="show('evening',this)"><div style="font-size:28px">🌙</div><b>أذكار المساء</b><span>7 أذكار - اضغطي</span></button>
-<button onclick="show('sleep',this)"><div style="font-size:28px">🛌</div><b>أذكار النوم</b><span>5 أذكار - اضغطي</span></button>
-<button onclick="show('quran',this)"><div style="font-size:28px">📖</div><b>القرآن</b><span>4 سور - اضغطي</span></button>
-</div></div>
-
-<div class="card"><h3 style="text-align:right">عداد التسبيح 📿</h3>
-<div class="circle" onclick="tasPlus()"><b id="tas">0</b><span id="tasName">سبحان الله</span><small style="color:#9aa3c7">اضغطي هنا وسبحي!</small></div>
-<div class="controls"><button onclick="tasMinus()">−</button><button onclick="tasReset()">↻ إعادة</button><button class="gold" onclick="tasPlus()">+ سبحي</button></div>
-<p style="color:#9aa3c7">عددك الحين: <b id="tasGoal" style="color:#e8c77a">0</b> - الهدف 33</p>
-<button onclick="changeDhikr()" style="background:#232b55;color:#e8c77a;border:1px solid #e8c77a;padding:10px 16px;border-radius:99px;cursor:pointer">تغيير الذكر 🔄</button>
+<!-- القبلة -->
+<div id="page-qibla" class="page">
+<div style="text-align:center;padding:16px"><b>اتجاه القبلة في</b><br><b style="font-size:22px">الرياض</b><br><small style="color:#9aa3c7">6121 شارع محمد رضا - حي الدار البيضاء</small></div>
+<div class="compass"><div style="text-align:center"><div class="arrow">⬇️</div><div style="font-size:12px;color:#9aa3c7">شمال | شرق | جنوب | غرب</div></div></div>
+<p style="text-align:center;color:#9aa3c7">السهم يشير إلى اتجاه القبلة 🕋</p>
+<button onclick="showToast('تم تحديد القبلة: جنوب غرب - 145 درجة')" style="width:calc(100% - 28px);margin:12px 14px;padding:14px;border:0;border-radius:12px;background:#ffcc66;font-weight:800;cursor:pointer">تحديد موقعي 📍</button>
 </div>
 
-<div class="azkar" id="azkarBox"><div class="progress"><div id="prog"></div></div><h2 id="title"></h2><p id="text"></p><div class="count" id="count"></div><button class="btn" onclick="next()">التالي 🤍 اضغطي</button><button class="fav" onclick="saveCurrent()">⭐ حفظ في المحفوظ</button><p style="color:#999;font-size:13px" id="pos"></p><p style="color:#999;font-size:13px">الفضل: من قالها حين يصبح وحين يمسي كان حقًا على الله أن يرضيه</p></div>
-</div>
+<!-- المفضلة -->
+<div id="page-saved" class="page"><div style="padding:14px"><b style="font-size:20px">المفضلة ⭐</b></div><div id="savedList"></div></div>
 
-<div id="page-prayer" class="page"><div class="top"><b>مواقيت الصلاة - الرياض</b><button onclick="go('home')">✕</button></div><div class="sec"><h3>اليوم - مواعيد حقيقية</h3><p id="nextPray2"></p></div><div style="padding:0 16px" id="prayFull"></div><button onclick="showToast('تم تفعيل التنبيهات 🔔')" style="width:calc(100% - 32px);margin:12px 16px;padding:14px;border:0;border-radius:14px;background:#e8c77a;font-weight:800;cursor:pointer">تفعيل التنبيهات 🔔</button></div>
+<!-- العداد -->
+<div id="page-counter" class="page"><div class="tasBig"><h3>العداد 📿</h3><p style="color:#9aa3c7">اللهم صل وسلم على نبينا محمد</p><div class="circle" onclick="tasPlus()"><b id="tas">0</b><span id="tasName">سبحان الله</span><small style="color:#9aa3c7">اضغطي للتسبيح</small></div><div style="display:flex;gap:10px;justify-content:center"><button onclick="tasMinus()" style="padding:12px 20px;border-radius:12px;background:#2a3048;color:#fff;border:0;cursor:pointer;font-size:20px">−</button><button onclick="tasReset()" style="padding:12px 20px;border-radius:12px;background:#2a3048;color:#fff;border:0;cursor:pointer">↻ إعادة</button><button onclick="tasPlus()" style="padding:12px 20px;border-radius:12px;background:#ffcc66;border:0;cursor:pointer;font-size:20px;font-weight:900">+</button></div><p>هدفك: <b id="tasGoal">0</b> / 100</p><button onclick="changeDhikr()" style="padding:10px 18px;border-radius:99px;background:#2a3048;color:#ffcc66;border:1px solid #ffcc66;cursor:pointer">تغيير الذكر 🔄</button></div></div>
 
-<div id="page-tasbih" class="page"><div class="top"><b>التسبيح</b><button onclick="go('home')">✕</button></div><div class="card"><h3>سبحي معنا 🤍</h3><div class="circle" onclick="tasPlus2()"><b id="tas2">0</b><span>الحمد لله</span></div><div class="controls"><button onclick="tas2=0;document.getElementById('tas2').innerText=0">↻ إعادة</button><button class="gold" onclick="tasPlus2()">+ سبحي</button></div><p style="color:#9aa3c7">كل ضغطة = حسنة إن شاء الله</p></div></div>
+<!-- المصحف -->
+<div id="page-mushaf" class="page"><div style="padding:14px;display:flex;justify-content:space-between"><b>المصحف</b><button onclick="go('home')" style="background:#2a3048;color:#fff;border:0;padding:8px 12px;border-radius:10px;cursor:pointer">✕ إغلاق</button></div><div style="display:flex;gap:8px;padding:0 14px"><button onclick="showToast('عرض السور')" style="flex:1;padding:10px;border-radius:99px;background:#ffcc66;border:0;font-weight:800;cursor:pointer">السور</button><button onclick="showToast('عرض الأجزاء')" style="flex:1;padding:10px;border-radius:99px;background:#2a3048;color:#fff;border:0;cursor:pointer">الأجزاء</button><button onclick="showToast('عرض الأحزاب')" style="flex:1;padding:10px;border-radius:99px;background:#2a3048;color:#fff;border:0;cursor:pointer">الأحزاب</button></div><div id="surahList" style="padding-top:10px"></div></div>
 
-<div id="page-saved" class="page"><div class="top"><b>المحفوظ ⭐</b><button onclick="go('home')">✕</button></div><div id="savedList" style="padding:0 16px"></div></div>
+<!-- متابعة -->
+<div id="page-track" class="page"><div style="padding:14px"><b style="font-size:20px">متابعة العبادات</b><br><small style="color:#9aa3c7">السبت - 14 نوفمبر</small></div><div style="padding:0 14px"><div class="card" style="display:block"><b>الصلوات</b><div class="track" id="trackPray"></div></div><div class="card" style="display:block"><b>الأذكار</b><div class="track" id="trackAzkar"></div></div><div class="card" style="display:block"><b>عبادات يومية</b><div class="track" id="trackDaily"></div></div></div><div style="text-align:center;padding:20px;color:#ffcc66;font-size:18px" id="trackPercent">نسبة الإنجاز: 0%</div></div>
 
-<div id="page-settings" class="page"><div class="top"><b>الإعدادات ⚙️</b><button onclick="go('home')">✕</button></div>
-<div class="set-row"><span>🔔 تنبيهات الصلاة</span><button id="notifBtn" onclick="toggleNotif()">تشغيل</button></div>
-<div class="set-row"><span>🔤 حجم الخط</span><select onchange="changeFont(this.value)"><option value="14px">صغير</option><option value="16px" selected>متوسط</option><option value="19px">كبير</option><option value="22px">كبير جدًا</option></select></div>
-<div class="set-row"><span>📍 المدينة</span><select onchange="showToast('تم تغيير المدينة إلى '+this.value+' - الأوقات بتتغير')"><option>الرياض</option><option>جدة</option><option>مكة</option><option>المدينة</option><option>الدمام</option></select></div>
-<div class="set-row"><span>🤍 عن التطبيق</span><button onclick="showToast('تطبيق سجا - صنع بحب بواسطة سجا 🌿 الإصدار 3')">عرض</button></div>
-<div class="set-row"><span>🗑️ مسح المحفوظ</span><button onclick="clearSaved()">مسح</button></div>
-<p style="text-align:center;color:#9aa3c7;padding:20px">الإصدار 3 • تصميم حديث • محدّث</p>
+<!-- المزيد -->
+<div id="page-more" class="page"><div style="padding:14px"><b style="font-size:20px">المزيد - كل الأقسام</b><button onclick="go('home')" style="float:left;background:#2a3048;color:#fff;border:0;padding:8px 12px;border-radius:10px;cursor:pointer">✕</button></div><div class="grid" id="moreGrid"></div></div>
+
+<!-- الإعدادات -->
+<div id="page-settings" class="page"><div style="padding:14px"><b style="font-size:20px">الإعدادات</b><button onclick="go('home')" style="float:left;background:#2a3048;color:#fff;border:0;padding:8px 12px;border-radius:10px;cursor:pointer">✕</button></div>
+<div class="set-row"><span>🔔 الإشعارات</span><button id="notifBtn" onclick="toggleNotif()">تشغيل</button></div>
+<div class="set-row"><span>🔤 حجم الخط</span><select onchange="changeFont(this.value)" style="background:#151a2c;color:#fff;padding:8px;border-radius:10px;border:0"><option value="14px">صغير</option><option value="16px" selected>متوسط</option><option value="19px">كبير</option><option value="22px">كبير جدًا</option></select></div>
+<div class="set-row"><span>📍 المدينة</span><select onchange="showToast('تم تغيير المدينة إلى '+this.value)" style="background:#151a2c;color:#fff;padding:8px;border-radius:10px;border:0"><option>الرياض</option><option>جدة</option><option>مكة</option><option>المدينة</option><option>الدمام</option></select></div>
+<div class="set-row"><span>🌙 الوضع الليلي</span><button>شغال ✅</button></div>
+<div class="set-row"><span>🤍 عن سجا</span><button onclick="showToast('سجا - تطبيق أذكاري صنع بحب 🌿')">عرض</button></div>
+<div class="set-row"><span>🗑️ مسح المفضلة</span><button onclick="clearSaved()">مسح</button></div>
 </div>
 
 </div>
 
 <div class="bottom">
-<button class="active" id="nav-home" onclick="go('home')"><span class="ic">🏠</span>الرئيسية</button>
-<button id="nav-prayer" onclick="go('prayer')"><span class="ic">🕌</span>الصلاة</button>
-<button id="nav-tasbih" onclick="go('tasbih')"><span class="ic">📿</span>التسبيح</button>
-<button id="nav-saved" onclick="go('saved')"><span class="ic">📖</span>المحفوظ</button>
-<button id="nav-settings" onclick="go('settings')"><span class="ic">⚙️</span>الإعدادات</button>
+<button class="active" id="nav-home" onclick="go('home')"><span>🕌</span>المنوعة</button>
+<button id="nav-prayer" onclick="go('prayer')"><span>🕋</span>الصلاة</button>
+<button id="nav-qibla" onclick="go('qibla')"><span>🧭</span>القبلة</button>
+<button id="nav-saved" onclick="go('saved')"><span>🔖</span>المفضلة</button>
+<button id="nav-counter" onclick="go('counter')"><span>📿</span>العداد</button>
 </div>
 
 <script>
-const duas=[["اللهم اجعلنا من الشاكرين","اللهم ارزقنا قلبًا خاشعًا ولسانًا ذاكرًا وعملًا متقبلًا"],["اللهم ارزقنا راحة البال","اللهم اشرح صدورنا ويسر أمورنا واغفر ذنوبنا"],["اللهم إنك عفو تحب العفو فاعف عنا","اللهم اعف عنا وارحمنا وتب علينا إنك أنت التواب الرحيم"],["اللهم ارزقنا الجنة","اللهم ارزقنا الجنة وما قرب إليها من قول وعمل"],["اللهم اشف مرضانا","اللهم اشف كل مريض شفاء لا يغادر سقمًا"]];
-const prayers=[{n:"الفجر",t:"05:10",e:"☀️",m:5*60+10},{n:"الظهر",t:"12:15",e:"🌤️",m:12*60+15},{n:"العصر",t:"15:32",e:"🌙",m:15*60+32},{n:"المغرب",t:"17:58",e:"🌇",m:17*60+58},{n:"العشاء",t:"19:20",e:"🌌",m:19*60+20}];
+const duas=["رَبَّنَا لَا تُؤَاخِذْنَا إِن نَّسِينَا أَوْ أَخْطَأْنَا","اللَّهُمَّ إِنَّكَ عَفُوٌّ تُحِبُّ الْعَفْوَ فَاعْفُ عَنِّي","رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً","اللَّهُمَّ أَعِنِّي عَلَى ذِكْرِكَ وَشُكْرِكَ وَحُسْنِ عِبَادَتِكَ"];
+let di=0;
+document.getElementById('duaTop').onclick=()=>{di=(di+1)%duas.length;document.getElementById('duaTop').innerHTML=duas[di]+'<br><span style="font-size:14px;color:#9aa3c7">اضغطي هنا لدعاء جديد 🔄</span>';showToast('دعاء جديد 🤲');};
 const data={
 morning:[["آية الكرسي","اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ",1],["سورة الإخلاص","قُلْ هُوَ اللَّهُ أَحَدٌ",3],["سورة الفلق","قُلْ أَعُوذُ بِرَبِّ الْفَلَقِ",3],["سورة الناس","قُلْ أَعُوذُ بِرَبِّ النَّاسِ",3],["أصبحنا وأصبح الملك لله","أَصْبَحْنَا وَأَصْبَحَ الْمُلْكُ لِلَّهِ، وَالْحَمْدُ لِلَّهِ",1],["سبحان الله وبحمده","سُبْحَانَ اللَّهِ وَبِحَمْدِهِ",100],["أستغفر الله","أَسْتَغْفِرُ اللَّهَ وَأَتُوبُ إِلَيْهِ",100]],
-evening:[["آية الكرسي","اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ",1],["سورة الإخلاص","قُلْ هُوَ اللَّهُ أَحَدٌ",3],["سورة الفلق","قُلْ أَعُوذُ بِرَبِّ الْفَلَقِ",3],["سورة الناس","قُلْ أَعُوذُ بِرَبِّ النَّاسِ",3],["أمسينا وأمسى الملك لله","أَمْسَيْنَا وَأَمْسَى الْمُلْكُ لِلَّهِ",1],["سبحان الله وبحمده","سُبْحَانَ اللَّهِ وَبِحَمْدِهِ",100],["أعوذ بكلمات الله التامات","أَعُوذُ بِكَلِمَاتِ اللَّهِ التَّامَّاتِ مِنْ شَرِّ مَا خَلَقَ",3]],
+evening:[["آية الكرسي","اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ",1],["سورة الإخلاص","قُلْ هُوَ اللَّهُ أَحَدٌ",3],["سورة الفلق","قُلْ أَعُوذُ بِرَبِّ الْفَلَقِ",3],["سورة الناس","قُلْ أَعُوذُ بِرَبِّ النَّاسِ",3],["أمسينا وأمسى الملك لله","أَمْسَيْنَا وَأَمْسَى الْمُلْكُ لِلَّهِ",1],["سبحان الله وبحمده","سُبْحَانَ اللَّهِ وَبِحَمْدِهِ",100]],
 sleep:[["باسمك اللهم أموت وأحيا","بِاسْمِكَ اللَّهُمَّ أَمُوتُ وَأَحْيَا",1],["آية الكرسي","اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ",1],["سورة الإخلاص","قُلْ هُوَ اللَّهُ أَحَدٌ",3],["سورة الفلق","قُلْ أَعُوذُ بِرَبِّ الْفَلَقِ",3],["سورة الناس","قُلْ أَعُوذُ بِرَبِّ النَّاسِ",3]],
-quran:[["الفاتحة","بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ، الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ",1],["الإخلاص","قُلْ هُوَ اللَّهُ أَحَدٌ",3],["الفلق","قُلْ أَعُوذُ بِرَبِّ الْفَلَقِ",3],["الناس","قُلْ أَعُوذُ بِرَبِّ النَّاسِ",3]]};
-let type='morning',i=0,left=1,saved=[],tas=0,tas2=0,notifOn=false,di=0;
+prayer:[["أستغفر الله","أَسْتَغْفِرُ اللَّهَ",3],["اللهم أنت السلام","اللَّهُمَّ أَنْتَ السَّلَامُ وَمِنْكَ السَّلَامُ",1],["سبحان الله","سُبْحَانَ اللَّهِ",33],["الحمد لله","الْحَمْدُ لِلَّهِ",33],["الله أكبر","اللَّهُ أَكْبَرُ",33]],
+names:[["الله","اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ",1],["الرحمن","الرَّحْمَٰنُ الرَّحِيمُ",1],["الملك","الْمَلِكُ الْقُدُّوسُ",1],["السلام","السَّلَامُ الْمُؤْمِنُ",1]],
+my:[["دعائي الخاص","اللَّهُمَّ ارزقني راحة البال وطمأنينة القلب",1]],
+after:[["أستغفر الله","أَسْتَغْفِرُ اللَّهَ",3],["آية الكرسي","اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ",1]],
+wake:[["الحمد لله الذي أحيانا","الْحَمْدُ لِلَّهِ الَّذِي أَحْيَانَا بَعْدَ مَا أَمَاتَنَا",1]],
+quranDua:[["ربنا آتنا في الدنيا حسنة","رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً",1]],
+prophet:[["اللهم إنك عفو","اللَّهُمَّ إِنَّكَ عَفُوٌّ تُحِبُّ الْعَفْوَ فَاعْفُ عَنِّي",1]],
+ruqyah:[["الفاتحة","بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ",1],["آية الكرسي","اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ",1]],
+ruqyahS:[["أعوذ بكلمات الله التامات","أَعُوذُ بِكَلِمَاتِ اللَّهِ التَّامَّاتِ مِنْ شَرِّ مَا خَلَقَ",3]],
+tasbih:[["سبحان الله","سُبْحَانَ اللَّهِ",33],["الحمد لله","الْحَمْدُ لِلَّهِ",33],["الله أكبر","اللَّهُ أَكْبَرُ",33]],
+hamd:[["الحمد لله","الْحَمْدُ لِلَّهِ",100]],
+istighfar:[["أستغفر الله","أَسْتَغْفِرُ اللَّهَ وَأَتُوبُ إِلَيْهِ",100]]
+};
+const surahs=[["الفاتحة","مكية - 7 آيات"],["البقرة","مدنية - 286 آية"],["آل عمران","مدنية - 200 آية"],["النساء","مدنية - 176 آية"],["المائدة","مدنية - 120 آية"],["الأنعام","مكية - 165 آية"],["الأعراف","مكية - 206 آية"],["الأنفال","مدنية - 75 آية"],["التوبة","مدنية - 129 آية"],["يونس","مكية - 109 آية"],["هود","مكية - 123 آية"],["يوسف","مكية - 111 آية"],["الكهف","مكية - 110 آية"],["مريم","مكية - 98 آية"],["يس","مكية - 83 آية"],["الرحمن","مدنية - 78 آية"],["الواقعة","مكية - 96 آية"],["الملك","مكية - 30 آية"]];
+const prayers=[{n:"الفجر",t:"4:49",m:4*60+49},{n:"الشروق",t:"6:09",m:6*60+9},{n:"الظهر",t:"11:38",m:11*60+38},{n:"العصر",t:"2:45",m:14*60+45},{n:"المغرب",t:"5:07",m:17*60+7},{n:"العشاء",t:"6:37",m:18*60+37}];
+let type='morning',i=0,left=1,saved=[],tas=0,notifOn=false,dhikrIdx=0;
 let dhikrs=['سبحان الله','الحمد لله','الله أكبر','أستغفر الله','لا إله إلا الله'];
-function go(p){document.querySelectorAll('.page').forEach(e=>e.classList.remove('active'));document.getElementById('page-'+p).classList.add('active');document.querySelectorAll('.bottom button').forEach(b=>b.classList.remove('active'));document.getElementById('nav-'+p).classList.add('active');window.scrollTo(0,0);if(p=='saved')renderSaved();}
-function showToast(m){let t=document.getElementById('toast');t.innerText=m;t.style.display='block';setTimeout(()=>t.style.display='none',2500);}
-function newDua(){let d=duas[Math.floor(Math.random()*duas.length)];document.getElementById('duaTitle').innerText=d[0];document.getElementById('duaText').innerText=d[1];showToast('دعاء جديد 🤲');}
-function show(t,btn){type=t;i=0;left=data[type][0][2];if(btn){document.querySelectorAll('.cats button').forEach(b=>b.classList.remove('active'));btn.classList.add('active');}render();document.getElementById('azkarBox').scrollIntoView({behavior:'smooth'});showToast('فتحنا لك '+ (t=='morning'?'أدعية الصباح':t=='evening'?'أذكار المساء':t=='sleep'?'أذكار النوم':'القرآن'));}
+function go(p){document.querySelectorAll('.page').forEach(e=>e.classList.remove('active'));document.getElementById('page-'+p).classList.add('active');document.querySelectorAll('.bottom button').forEach(b=>b.classList.remove('active'));let nav=document.getElementById('nav-'+p);if(nav)nav.classList.add('active');window.scrollTo(0,0);if(p=='saved')renderSaved();if(p=='mushaf')renderSurahs();if(p=='track')renderTrack();}
+function showToast(m){let t=document.getElementById('toast');t.innerText=m;t.style.display='block';setTimeout(()=>t.style.display='none',2200);}
+function openAzkar(k,title){type=k in data?k:'morning';i=0;left=data[type][0][2];document.getElementById('azkarBox').style.display='block';render();document.getElementById('azkarBox').scrollIntoView({behavior:'smooth'});showToast('فتحنا لك: '+title);}
+function closeAzkar(){document.getElementById('azkarBox').style.display='none';}
 function render(){let d=data[type][i];document.getElementById('title').innerText=d[0];document.getElementById('text').innerText=d[1];document.getElementById('count').innerText=left;document.getElementById('pos').innerText=(i+1)+' من '+data[type].length;document.getElementById('prog').style.width=((i)/data[type].length*100)+'%';}
-function next(){left--;if(left<=0){i++;if(i>=data[type].length){i=0;showToast('ما شاء الله خلصت الأذكار 🤍 تقبل الله منك');}left=data[type][i][2];}render();}
+function next(){left--;if(left<=0){i++;if(i>=data[type].length){i=0;showToast('ما شاء الله خلصت 🤍 تقبل الله منك');}left=data[type][i][2];}render();}
+function saveCurrent(){let d=data[type][i];let txt=d[0]+' - '+d[1];if(!saved.includes(txt)){saved.push(txt);showToast('تم الحفظ في المفضلة ⭐');}else showToast('محفوظ من قبل');renderSaved();}
+function renderSaved(){let el=document.getElementById('savedList');if(saved.length==0){el.innerHTML='<p style="color:#9aa3c7;text-align:center;padding:30px">لسا ما حفظت شي<br>اضغطي ⭐ في أي ذكر عشان تحفظينه هنا</p>';return;}el.innerHTML=saved.map((s,idx)=>'<div style="background:#2a3048;padding:14px;border-radius:12px;margin:10px 14px;display:flex;justify-content:space-between;gap:10px"><span>'+s+'</span><button onclick="saved.splice('+idx+',1);renderSaved()" style="background:none;border:0;color:#fff;cursor:pointer">🗑️</button></div>').join('');}
+function clearSaved(){saved=[];renderSaved();showToast('تم مسح المفضلة');}
 function tasPlus(){tas++;document.getElementById('tas').innerText=tas;document.getElementById('tasGoal').innerText=tas;if(tas%33==0)showToast('ما شاء الله وصلت 33 🎉');}
-function tasPlus2(){tas2++;document.getElementById('tas2').innerText=tas2;}
 function tasMinus(){if(tas>0)tas--;document.getElementById('tas').innerText=tas;document.getElementById('tasGoal').innerText=tas;}
 function tasReset(){tas=0;document.getElementById('tas').innerText=0;document.getElementById('tasGoal').innerText=0;showToast('تمت إعادة العداد');}
-function changeDhikr(){di=(di+1)%dhikrs.length;document.getElementById('tasName').innerText=dhikrs[di];tas=0;document.getElementById('tas').innerText=0;showToast('الذكر الجديد: '+dhikrs[di]);}
-function toggleFav(txt,btn){if(saved.includes(txt)){saved=saved.filter(s=>s!==txt);btn.innerText='☆';showToast('تمت الإزالة من المحفوظ');}else{saved.push(txt);btn.innerText='⭐';showToast('تم الحفظ في المحفوظ ⭐ روحي للمحفوظ وشوفيه');}renderSaved();}
-function saveCurrent(){let d=data[type][i];if(!saved.includes(d[0])){saved.push(d[0]+' - '+d[1]);showToast('تم الحفظ ⭐');}else showToast('محفوظ من قبل');renderSaved();}
-function renderSaved(){let el=document.getElementById('savedList');if(saved.length==0){el.innerHTML='<p style="color:#9aa3c7;text-align:center;padding:30px">لسا ما حفظت شي، اضغطي ⭐ عشان تحفظين<br><button onclick="go(\'home\')" style="margin-top:12px;padding:10px 18px;border:0;border-radius:99px;background:#e8c77a;font-weight:800;cursor:pointer">روحي للرئيسية</button></p>';return;}el.innerHTML=saved.map((s,idx)=>'<div style="background:#1a2145;padding:16px;border-radius:16px;margin:10px 0;display:flex;justify-content:space-between;gap:10px"><span>'+s+'</span><button onclick="saved.splice('+idx+',1);renderSaved()" style="background:none;border:0;color:#fff;font-size:18px;cursor:pointer">🗑️</button></div>').join('');}
-function clearSaved(){saved=[];renderSaved();showToast('تم مسح المحفوظ');}
-function toggleNotif(){notifOn=!notifOn;document.getElementById('notifBtn').innerText=notifOn?'إيقاف':'تشغيل';showToast(notifOn?'تم تشغيل التنبيهات 🔔':'تم إيقاف التنبيهات');}
-function changeFont(v){document.body.style.fontSize=v;showToast('تم تغيير حجم الخط - شوفي الفرق!');}
-function renderPray(){let now=new Date();let mins=now.getHours()*60+now.getMinutes();let next=prayers.find(p=>p.m>mins)||prayers[0];let diff=next.m-mins;if(diff<0)diff+=1440;let h=Math.floor(diff/60),m=diff%60;
-document.getElementById('liveClock').innerText='🕐 الحين الساعة '+now.toLocaleTimeString('ar-SA',{hour:'2-digit',minute:'2-digit'})+' - الصلاة القادمة: '+next.n+' بعد '+h+' ساعة و '+m+' دقيقة';
-document.getElementById('nextPray').innerText='⏳ القادمة: '+next.n+' بعد '+h+' س و '+m+' د';
-document.getElementById('nextPray2').innerText='⏳ القادمة: '+next.n+' بعد '+h+' س و '+m+' د';
-document.getElementById('prayList').innerHTML=prayers.map(p=>'<div class="'+(p.n==next.n?'active':'')+'" onclick="showToast(\''+p.n+' الساعة '+p.t+' - القادمة بعد '+diff+' دقيقة\')"><div>'+p.e+'</div><div class="t">'+p.n+'</div><div class="t">'+p.t+'</div>'+(p.n==next.n?'<div style="background:#e8c77a;color:#000;font-size:11px;padding:4px 6px;border-radius:20px;margin-top:6px">قادم ⏳</div>':'')+'</div>').join('');
-document.getElementById('prayFull').innerHTML=prayers.map(p=>'<div><span>'+p.e+' '+p.n+'</span><b>'+p.t+(p.n==next.n?' ⭐ قادمة':'')+'</b></div>').join('');
-}
-document.getElementById('todayDate').innerText=new Date().toLocaleDateString('ar-SA',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
-renderPray();setInterval(renderPray,30000);show('morning');renderSaved();
+function changeDhikr(){dhikrIdx=(dhikrIdx+1)%dhikrs.length;document.getElementById('tasName').innerText=dhikrs[dhikrIdx];tas=0;document.getElementById('tas').innerText=0;showToast('الذكر الجديد: '+dhikrs[dhikrIdx]);}
+function toggleNotif(){notifOn=!notifOn;document.getElementById('notifBtn').innerText=notifOn?'إيقاف':'تشغيل';showToast(notifOn?'تم تشغيل الإشعارات 🔔':'تم إيقاف الإشعارات');}
+function changeFont(v){document.body.style.fontSize=v;showToast('تم تغيير حجم الخط');}
+function renderSurahs(){document.getElementById('surahList').innerHTML=surahs.map((s,idx)=>'<div class="surah" onclick="showToast(\'فتحنا سورة '+s[0]+' - قريبًا كاملة\')"><div><b>'+(idx+1)+'. '+s[0]+'</b><br><span>'+s[1]+'</span></div><span>📖</span></div>').join('');}
+function renderPray(){let now=new Date();let mins=now.getHours()*60+now.getMinutes();let next=prayers.find(p=>p.m>mins)||prayers[0];let diff=next.m-mins;if(diff<0)diff+=1440;let h=Math.floor(diff/60),m=diff%60,s=59-now.getSeconds();
+document.getElementById('countdown').innerText='مضى على أذان العشاء 53 دقيقة - القادمة: '+next.n+' بعد '+h+' ساعة و '+m+' دقيقة';
+document.getElementById('prayTimer').innerText=String(h).padStart(1,'0')+':'+String(m).padStart(2,'0')+':'+String(s).padStart(2,'0');
+document.getElementById('prayNext').innerText='الصلاة القادمة: '+next.n+' بعد '+h+' ساعة و '+m+' دقيقة';
+document.getElementById('prayFull').innerHTML=prayers.map(p=>'<div class="card" onclick="showToast(\''+p.n+' الساعة '+p.t+'\')"><span>'+p.n+'</span><b>'+p.t+(p.n==next.n?' ⭐ قادمة':'')+'</b></div>').join('');}
+function renderTrack(){let p=['الفجر','الظهر','العصر','المغرب','العشاء'];let a=['أذكار الصباح','أذكار المساء','أذكار النوم'];let d=['الضحى','الوتر','قيام الليل','سنن الرواتب'];
+document.getElementById('trackPray').innerHTML=p.map(x=>'<div onclick="this.classList.toggle(\'done\');updateTrack()">'+x+'<br>✅</div>').join('');
+document.getElementById('trackAzkar').innerHTML=a.map(x=>'<div onclick="this.classList.toggle(\'done\');updateTrack()">'+x+'<br>✅</div>').join('');
+document.getElementById('trackDaily').innerHTML=d.map(x=>'<div onclick="this.classList.toggle(\'done\');updateTrack()">'+x+'<br>✅</div>').join('');}
+function updateTrack(){let total=document.querySelectorAll('.track div').length;let done=document.querySelectorAll('.track div.done').length;let pc=Math.round(done/total*100);document.getElementById('trackPercent').innerText='نسبة الإنجاز: '+pc+'% - ما شاء الله عليك 🤍';if(pc==100)showToast('ما شاء الله خلصت كل عبادات اليوم 🎉');}
+document.getElementById('moreGrid').innerHTML=[["أدعية المريض","🤲"],["أدعية الميت","🕊️"],["آية وتفسير","📖"],["أذكار السفر","✈️"],["أذكار الحج","🕋"],["أذكار العمرة","🕋"],["أذكار الصباح","🌅"],["أذكار المساء","🌙"],["كتيب الأذكار","📚"],["بطاقة الأذكار","💳"],["مختصر الأدعية","📝"],["أقسام الأدعية","📂"],["صلاة الضحى","☀️"],["أوقات النهي","⏰"],["السنن والرواتب","🕌"],["رحلة الدعاء","🌙"]].map(x=>'<button onclick="openAzkar(\'morning\',\''+x[0]+'\');go(\'home\')"><span>'+x[0]+'</span><small>'+x[1]+' اضغطي</small></button>').join('');
+renderPray();setInterval(renderPray,1000);renderSurahs();renderTrack();renderSaved();
 </script>
 </body>
 </html>
