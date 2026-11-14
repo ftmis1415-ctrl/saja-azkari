@@ -1,1 +1,67 @@
-index.html
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>سجا | أذكاري</title>
+<style>
+*{box-sizing:border-box;font-family:system-ui}
+body{margin:0;background:#fdf8f0;color:#3a2e2e;min-height:100vh}
+header{text-align:center;padding:28px 16px 10px}
+header h1{font-size:34px;margin:0;color:#8a5a3b}
+header p{color:#9a7b6a}
+.tabs{display:flex;gap:10px;justify-content:center;padding:12px}
+.tabs button{border:0;padding:12px 22px;border-radius:999px;background:#fff;box-shadow:0 4px 14px #0001;cursor:pointer;font-size:16px;font-weight:700}
+.tabs button.active{background:#8a5a3b;color:#fff}
+.card{max-width:640px;margin:16px auto;background:#fff;border-radius:24px;padding:24px;box-shadow:0 10px 30px #0001;text-align:center}
+.card h2{margin:0 0 8px;font-size:24px}
+.card p{font-size:19px;line-height:1.9}
+.count{font-size:48px;font-weight:900;color:#8a5a3b;margin:10px}
+.btn{width:100%;padding:16px;border:0;border-radius:16px;background:#8a5a3b;color:#fff;font-size:20px;font-weight:800;cursor:pointer}
+.small{color:#aaa;font-size:13px;margin-top:12px}
+.progress{height:8px;background:#f0e6dc;border-radius:99px;overflow:hidden;margin:14px 0}
+.progress div{height:100%;background:#c9a07a;width:0%}
+</style>
+</head>
+<body>
+<header><h1>🌿 سجا - أذكاري</h1><p>طمأنينة قلبك تبدأ من هنا</p></header>
+<div class="tabs">
+<button id="b1" class="active" onclick="show('morning')">☀️ أذكار الصباح</button>
+<button id="b2" onclick="show('evening')">🌙 أذكار المساء</button>
+</div>
+<div class="card">
+<div class="progress"><div id="prog"></div></div>
+<h2 id="title"></h2>
+<p id="text"></p>
+<div class="count" id="count"></div>
+<button class="btn" onclick="next()">التالي 🤍</button>
+<p class="small" id="pos"></p>
+</div>
+<script>
+const data={
+morning:[
+["آية الكرسي","اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ",1],
+["سورة الإخلاص","قُلْ هُوَ اللَّهُ أَحَدٌ",3],
+["سورة الفلق","قُلْ أَعُوذُ بِرَبِّ الْفَلَقِ",3],
+["سورة الناس","قُلْ أَعُوذُ بِرَبِّ النَّاسِ",3],
+["أصبحنا وأصبح الملك لله","أَصْبَحْنَا وَأَصْبَحَ الْمُلْكُ لِلَّهِ، وَالْحَمْدُ لِلَّهِ",1],
+["سبحان الله وبحمده","سُبْحَانَ اللَّهِ وَبِحَمْدِهِ",100],
+["أستغفر الله","أَسْتَغْفِرُ اللَّهَ وَأَتُوبُ إِلَيْهِ",100]
+],
+evening:[
+["آية الكرسي","اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ",1],
+["سورة الإخلاص","قُلْ هُوَ اللَّهُ أَحَدٌ",3],
+["سورة الفلق","قُلْ أَعُوذُ بِرَبِّ الْفَلَقِ",3],
+["سورة الناس","قُلْ أَعُوذُ بِرَبِّ النَّاسِ",3],
+["أمسينا وأمسى الملك لله","أَمْسَيْنَا وَأَمْسَى الْمُلْكُ لِلَّهِ، وَالْحَمْدُ لِلَّهِ",1],
+["سبحان الله وبحمده","سُبْحَانَ اللَّهِ وَبِحَمْدِهِ",100],
+["أعوذ بكلمات الله التامات","أَعُوذُ بِكَلِمَاتِ اللَّهِ التَّامَّاتِ مِنْ شَرِّ مَا خَلَقَ",3]
+]};
+let type='morning', i=0, left=0;
+function show(t){type=t;i=0;document.getElementById('b1').classList.toggle('active',t=='morning');document.getElementById('b2').classList.toggle('active',t=='evening');render();}
+function render(){let d=data[type][i];document.getElementById('title').innerText=d[0];document.getElementById('text').innerText=d[1];left=d[2];document.getElementById('count').innerText=left;document.getElementById('pos').innerText=(i+1)+' من '+data[type].length;document.getElementById('prog').style.width=((i)/data[type].length*100)+'%';}
+function next(){left--;if(left<=0){i++;if(i>=data[type].length){i=0;alert('ما شاء الله خلصت الأذكار 🤍 تقبل الله منك');} }render();}
+show('morning');
+</script>
+</body>
+</html>
