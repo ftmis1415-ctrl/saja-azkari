@@ -6,37 +6,111 @@
 <title>سجا | أذكاري</title>
 <style>
 *{box-sizing:border-box;font-family:system-ui}
-body{margin:0;background:#fdf8f0;color:#3a2e2e;min-height:100vh}
-header{text-align:center;padding:28px 16px 10px}
-header h1{font-size:34px;margin:0;color:#8a5a3b}
-header p{color:#9a7b6a}
-.tabs{display:flex;gap:10px;justify-content:center;padding:12px}
-.tabs button{border:0;padding:12px 22px;border-radius:999px;background:#fff;box-shadow:0 4px 14px #0001;cursor:pointer;font-size:16px;font-weight:700}
-.tabs button.active{background:#8a5a3b;color:#fff}
-.card{max-width:640px;margin:16px auto;background:#fff;border-radius:24px;padding:24px;box-shadow:0 10px 30px #0001;text-align:center}
-.card h2{margin:0 0 8px;font-size:24px}
-.card p{font-size:19px;line-height:1.9}
-.count{font-size:48px;font-weight:900;color:#8a5a3b;margin:10px}
-.btn{width:100%;padding:16px;border:0;border-radius:16px;background:#8a5a3b;color:#fff;font-size:20px;font-weight:800;cursor:pointer}
-.small{color:#aaa;font-size:13px;margin-top:12px}
-.progress{height:8px;background:#f0e6dc;border-radius:99px;overflow:hidden;margin:14px 0}
-.progress div{height:100%;background:#c9a07a;width:0%}
+body{margin:0;background:#0f1530;color:#fff;padding-bottom:110px}
+.top{display:flex;justify-content:space-between;align-items:center;background:#1a2145;margin:14px;border-radius:18px;padding:14px 16px}
+.top b{font-size:20px}
+.icons{font-size:20px;display:flex;gap:14px}
+.sec{padding:0 16px}
+.sec h3{color:#e8c77a;margin:22px 0 6px;font-size:22px}
+.sec span{color:#9aa3c7;font-size:14px}
+.dua{background:#1a2145;border-radius:18px;padding:16px;display:flex;gap:12px;align-items:center;margin-top:12px}
+.dua .book{font-size:36px}
+.dua b{font-size:19px}
+.dua p{margin:6px 0 0;color:#cbd2f0;font-size:14px;line-height:1.6}
+.head-row{display:flex;justify-content:space-between;align-items:center}
+.head-row a{color:#e8c77a;text-decoration:none;font-size:14px}
+.pray{display:flex;gap:10px;overflow:auto;padding:6px 2px}
+.pray div{min-width:90px;background:#1a2145;border-radius:16px;padding:14px 8px;text-align:center;border:1px solid #2a3468}
+.pray div.active{border:1px solid #e8c77a;background:#232b55}
+.pray .t{font-weight:800;font-size:17px;margin:6px 0 2px}
+.pray .s{color:#9aa3c7;font-size:13px}
+.pray .next{background:#e8c77a;color:#000;font-size:11px;padding:4px 6px;border-radius:20px;display:inline-block;margin-top:6px;font-weight:700}
+.cats{display:flex;gap:10px;overflow:auto;padding:6px 2px}
+.cats button{min-width:110px;background:#1a2145;border:1px solid #2a3468;color:#fff;border-radius:16px;padding:16px 8px;cursor:pointer}
+.cats button.active{border-color:#e8c77a;background:#232b55}
+.cats .e{font-size:28px}
+.cats b{display:block;margin:8px 0 4px}
+.cats span{color:#9aa3c7;font-size:13px}
+.card{background:#1a2145;border-radius:22px;padding:18px;margin:16px;text-align:center}
+.card h3{text-align:right;margin:0;color:#fff;font-size:20px}
+.circle{width:210px;height:210px;border:2px solid #e8c77a;border-radius:50%;margin:18px auto;display:flex;flex-direction:column;justify-content:center;box-shadow:0 0 30px #e8c77a33}
+.circle b{font-size:72px;color:#e8c77a;line-height:1}
+.circle span{font-size:20px}
+.controls{display:flex;gap:10px;justify-content:center;align-items:center}
+.controls button{background:#232b55;border:1px solid #2a3468;color:#fff;padding:12px 18px;border-radius:12px;font-size:20px;cursor:pointer}
+.controls button.gold{background:#e8c77a;color:#000;font-weight:900}
+.azkar{background:#fff;color:#222;border-radius:22px;margin:16px;padding:18px;text-align:center}
+.azkar h2{margin:0;font-size:22px}
+.azkar p{font-size:19px;line-height:1.9}
+.azkar .count{font-size:46px;font-weight:900;color:#8a5a3b}
+.azkar .btn{width:100%;padding:15px;border:0;border-radius:14px;background:#0f1530;color:#e8c77a;font-size:19px;font-weight:800;cursor:pointer}
+.progress{height:8px;background:#eee;border-radius:99px;overflow:hidden;margin:12px 0}
+.progress div{height:100%;background:#e8c77a;width:0%}
+.bottom{position:fixed;bottom:12px;left:12px;right:12px;background:#2a335f;border-radius:22px;display:flex;padding:8px}
+.bottom button{flex:1;background:transparent;border:0;color:#cbd2f0;padding:10px 2px;cursor:pointer;font-size:13px}
+.bottom button.active{color:#e8c77a;background:#1a2145;border-radius:16px}
+.bottom .ic{font-size:22px;display:block}
 </style>
 </head>
 <body>
-<header><h1>🌿 سجا - أذكاري</h1><p>طمأنينة قلبك تبدأ من هنا</p></header>
-<div class="tabs">
-<button id="b1" class="active" onclick="show('morning')">☀️ أذكار الصباح</button>
-<button id="b2" onclick="show('evening')">🌙 أذكار المساء</button>
+<div class="top"><div><b>الصفحة الرئيسية</b></div><div class="icons">🔔 👤 ☰</div></div>
+
+<div class="sec">
+<h3>دعاء اليوم</h3><span>السبت، 14 نوفمبر 2026</span>
+<div class="dua"><div class="book">📖</div><div><b>اللهم اجعلنا من الشاكرين</b><p>اللهم ارزقنا قلبًا خاشعًا ولسانًا ذاكرًا وعملًا متقبلًا</p></div><div style="margin-right:auto">⭐</div></div>
 </div>
+
+<div class="sec">
+<div class="head-row"><h3>مواقيت الصلاة</h3><a href="#">عرض الكل ›</a></div>
+<div class="pray">
+<div><div>☀️</div><div class="t">الفجر</div><div class="t">05:10</div><div class="s">05:10</div></div>
+<div><div>🌤️</div><div class="t">الظهر</div><div class="t">12:15</div><div class="s">12:15</div></div>
+<div class="active"><div>🌙</div><div class="t">العصر</div><div class="t">15:32</div><span class="next">قادم - بعد 22 دقيقة</span></div>
+<div><div>🌇</div><div class="t">المغرب</div><div class="t">17:58</div><div class="s">17:58</div></div>
+<div><div>🌙</div><div class="t">العشاء</div><div class="t">19:20</div><div class="s">19:20</div></div>
+</div>
+</div>
+
+<div class="sec">
+<div class="head-row"><h3>التصنيفات</h3><a href="#">عرض الكل ›</a></div>
+<div class="cats">
+<button onclick="show('morning',this)"><span class="e">🌅</span><b>أدعية الصباح</b><span>12 ذكر</span></button>
+<button onclick="show('evening',this)"><span class="e">🌙</span><b>أذكار المساء</b><span>10 ذكر</span></button>
+<button onclick="show('sleep',this)"><span class="e">🛌</span><b>أذكار النوم</b><span>8 ذكر</span></button>
+<button onclick="show('quran',this)"><span class="e">📖</span><b>القرآن</b><span>30 جزء</span></button>
+</div>
+</div>
+
 <div class="card">
+<h3>عداد التسبيح</h3>
+<div class="circle"><b id="tas">33</b><span id="tasName">سبحان الله</span></div>
+<div class="controls">
+<button onclick="tasMinus()">−</button>
+<button onclick="tasReset()">↻ إعادة</button>
+<button class="gold" onclick="tasPlus()">+</button>
+</div>
+<p style="color:#9aa3c7">الهدف: 33 مرة — <span id="tasGoal">1/3 مكتمل</span></p>
+<p style="font-size:13px;color:#9aa3c7">اضغط + عشان تسبح، اضغط على اسم الذكر عشان تغيره</p>
+<button onclick="changeDhikr()" style="background:#232b55;color:#e8c77a;border:1px solid #e8c77a;padding:10px 16px;border-radius:99px;cursor:pointer">تغيير الذكر 🔄</button>
+</div>
+
+<div class="azkar" id="azkarBox">
 <div class="progress"><div id="prog"></div></div>
 <h2 id="title"></h2>
 <p id="text"></p>
 <div class="count" id="count"></div>
 <button class="btn" onclick="next()">التالي 🤍</button>
-<p class="small" id="pos"></p>
+<p style="color:#999;font-size:13px" id="pos"></p>
 </div>
+
+<div class="bottom">
+<button class="active"><span class="ic">🏠</span>الرئيسية</button>
+<button><span class="ic">🕌</span>الصلاة</button>
+<button onclick="document.getElementById('tas').scrollIntoView({behavior:'smooth'})"><span class="ic">📿</span>التسبيح</button>
+<button><span class="ic">📖</span>المحفوظ</button>
+<button><span class="ic">⚙️</span>الإعدادات</button>
+</div>
+
 <script>
 const data={
 morning:[
@@ -44,7 +118,7 @@ morning:[
 ["سورة الإخلاص","قُلْ هُوَ اللَّهُ أَحَدٌ",3],
 ["سورة الفلق","قُلْ أَعُوذُ بِرَبِّ الْفَلَقِ",3],
 ["سورة الناس","قُلْ أَعُوذُ بِرَبِّ النَّاسِ",3],
-["أصبحنا وأصبح الملك لله","أَصْبَحْنَا وَأَصْبَحَ الْمُلْكُ لِلَّهِ، وَالْحَمْدُ لِلَّهِ",1],
+["أصبحنا وأصبح الملك لله","أَصْبَحْنَا وَأَصْبَحَ الْمُلْكُ لِلَّهِ",1],
 ["سبحان الله وبحمده","سُبْحَانَ اللَّهِ وَبِحَمْدِهِ",100],
 ["أستغفر الله","أَسْتَغْفِرُ اللَّهَ وَأَتُوبُ إِلَيْهِ",100]
 ],
@@ -53,14 +127,32 @@ evening:[
 ["سورة الإخلاص","قُلْ هُوَ اللَّهُ أَحَدٌ",3],
 ["سورة الفلق","قُلْ أَعُوذُ بِرَبِّ الْفَلَقِ",3],
 ["سورة الناس","قُلْ أَعُوذُ بِرَبِّ النَّاسِ",3],
-["أمسينا وأمسى الملك لله","أَمْسَيْنَا وَأَمْسَى الْمُلْكُ لِلَّهِ، وَالْحَمْدُ لِلَّهِ",1],
+["أمسينا وأمسى الملك لله","أَمْسَيْنَا وَأَمْسَى الْمُلْكُ لِلَّهِ",1],
 ["سبحان الله وبحمده","سُبْحَانَ اللَّهِ وَبِحَمْدِهِ",100],
 ["أعوذ بكلمات الله التامات","أَعُوذُ بِكَلِمَاتِ اللَّهِ التَّامَّاتِ مِنْ شَرِّ مَا خَلَقَ",3]
+],
+sleep:[
+["باسمك اللهم أموت وأحيا","بِاسْمِكَ اللَّهُمَّ أَمُوتُ وَأَحْيَا",1],
+["آية الكرسي","اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ",1],
+["سورة الإخلاص","قُلْ هُوَ اللَّهُ أَحَدٌ",3],
+["سورة الفلق","قُلْ أَعُوذُ بِرَبِّ الْفَلَقِ",3],
+["سورة الناس","قُلْ أَعُوذُ بِرَبِّ النَّاسِ",3]
+],
+quran:[
+["الفاتحة","بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ، الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ",1],
+["الإخلاص","قُلْ هُوَ اللَّهُ أَحَدٌ",3],
+["الفلق","قُلْ أَعُوذُ بِرَبِّ الْفَلَقِ",3],
+["الناس","قُلْ أَعُوذُ بِرَبِّ النَّاسِ",3]
 ]};
-let type='morning', i=0, left=0;
-function show(t){type=t;i=0;document.getElementById('b1').classList.toggle('active',t=='morning');document.getElementById('b2').classList.toggle('active',t=='evening');render();}
-function render(){let d=data[type][i];document.getElementById('title').innerText=d[0];document.getElementById('text').innerText=d[1];left=d[2];document.getElementById('count').innerText=left;document.getElementById('pos').innerText=(i+1)+' من '+data[type].length;document.getElementById('prog').style.width=((i)/data[type].length*100)+'%';}
-function next(){left--;if(left<=0){i++;if(i>=data[type].length){i=0;alert('ما شاء الله خلصت الأذكار 🤍 تقبل الله منك');} }render();}
+let type='morning', i=0, left=1;
+function show(t,btn){type=t;i=0;left=data[type][0][2];if(btn){document.querySelectorAll('.cats button').forEach(b=>b.classList.remove('active'));btn.classList.add('active');} render(); document.getElementById('azkarBox').scrollIntoView({behavior:'smooth'});}
+function render(){let d=data[type][i];document.getElementById('title').innerText=d[0];document.getElementById('text').innerText=d[1];document.getElementById('count').innerText=left;document.getElementById('pos').innerText=(i+1)+' من '+data[type].length;document.getElementById('prog').style.width=((i)/data[type].length*100)+'%';}
+function next(){left--;if(left<=0){i++;if(i>=data[type].length){i=0;alert('ما شاء الله خلصت الأذكار 🤍 تقبل الله منك');} left=data[type][i][2];} render();}
+let tas=33, dhikrs=['سبحان الله','الحمد لله','الله أكبر','أستغفر الله','لا إله إلا الله'], di=0;
+function tasPlus(){tas++;document.getElementById('tas').innerText=tas;document.getElementById('tasGoal').innerText=Math.floor(tas/33)+'/3 مكتمل';}
+function tasMinus(){if(tas>0)tas--;document.getElementById('tas').innerText=tas;}
+function tasReset(){tas=0;document.getElementById('tas').innerText=0;}
+function changeDhikr(){di=(di+1)%dhikrs.length;document.getElementById('tasName').innerText=dhikrs[di];tas=0;document.getElementById('tas').innerText=0;}
 show('morning');
 </script>
 </body>
